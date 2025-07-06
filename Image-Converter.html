@@ -1,16 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Converter</title>
+</head>
+<body style="background:#121212; font-family:sans-serif; color:white; padding:40px;">
+
 <div style="background:#2e2e4e; color:white; padding:20px; border-radius:10px; max-width:500px; margin:auto;">
   <h2 style="margin-bottom:10px;">Image Converter</h2>
   <p>Convert images between different formats like JPG, PNG, WEBP, and more with high quality.</p>
   
   <input type="file" id="imageInput" accept="image/*" style="margin-top:10px;" />
   
-  <select id="formatSelect" style="margin-top:10px; padding:5px;">
+  <select id="formatSelect" style="margin-top:10px; padding:5px; width:100%; margin-bottom:10px;">
     <option value="image/png">PNG</option>
     <option value="image/jpeg">JPG</option>
     <option value="image/webp">WEBP</option>
   </select>
 
-  <button onclick="convertImage()" style="display:block; background:#ffd700; color:black; padding:10px 15px; border:none; border-radius:5px; margin-top:15px; font-weight:bold;">
+  <button onclick="convertImage()" style="display:block; background:#ffd700; color:black; padding:10px 15px; border:none; border-radius:5px; margin-top:15px; font-weight:bold; width:100%;">
     Convert & Download
   </button>
 
@@ -44,7 +53,9 @@
           const link = document.createElement('a');
           link.download = 'converted-image.' + format.split('/')[1];
           link.href = URL.createObjectURL(blob);
+          document.body.appendChild(link);
           link.click();
+          document.body.removeChild(link);
         }, format);
       };
       img.src = e.target.result;
@@ -53,3 +64,7 @@
     reader.readAsDataURL(file);
   }
 </script>
+
+</body>
+</html>
+
