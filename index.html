@@ -39,9 +39,31 @@
             margin-bottom: 1rem;
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-icon {
+            color: #EAEAEA;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
             color: #FFD700;
         }
 
@@ -98,6 +120,7 @@
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            min-height: calc(100vh - 300px); /* Adjust based on footer height */
         }
 
         .page-title {
@@ -165,13 +188,110 @@
         /* Footer Styles */
         footer {
             background-color: #2B2D42;
-            padding: 1.5rem;
+            padding: 2rem 1.5rem;
             text-align: center;
             margin-top: 2rem;
         }
 
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link {
+            color: #EAEAEA;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #FFD700;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .footer-social-icon {
+            color: #EAEAEA;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-social-icon:hover {
+            color: #FFD700;
+        }
+
         .footer-text {
             color: #EAEAEA;
+            margin-top: 1rem;
+        }
+
+        /* Additional Page Styles */
+        .content-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #2B2D42;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-page h1 {
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .content-page h2 {
+            color: #FFD700;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .content-page p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .content-page ul {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .content-page li {
+            margin-bottom: 0.5rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background-color: #FFD700;
+            color: #1E1E2F;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #E6C200;
         }
 
         /* Responsive Styles */
@@ -185,8 +305,19 @@
                 gap: 1rem;
             }
 
-            .logo {
+            .logo-container {
                 margin-bottom: 0.5rem;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .social-icons {
+                margin-top: 0.5rem;
             }
         }
 
@@ -290,7 +421,15 @@
 <body>
     <header>
         <div class="header-top">
-            <div class="logo">Multi Tool Hub</div>
+            <div class="logo-container">
+                <a href="index.html" class="logo">Multi Tool Hub</a>
+                <div class="social-icons">
+                    <a href="https://facebook.com" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
             <div class="auth-buttons">
                 <button class="auth-btn" id="loginBtn">Login</button>
                 <button class="auth-btn" id="signupBtn">Sign Up</button>
@@ -302,62 +441,182 @@
         </div>
     </header>
 
-    <main>
-        <h1 class="page-title">All-In-One Tool Collection</h1>
-        
-        <div class="tools-grid" id="toolsGrid">
-            <div class="tool-card" data-tool-name="Image Converter">
-                <h2>Image Converter</h2>
-                <p>Convert images between different formats like JPG, PNG, WEBP, and more with high quality.</p>
-                <button class="tool-btn">Use Tool</button>
+    <main id="mainContent">
+        <!-- Dynamic content will be loaded here -->
+        <div id="homeContent">
+            <h1 class="page-title">All-In-One Tool Collection</h1>
+            
+            <div class="tools-grid" id="toolsGrid">
+                <div class="tool-card" data-tool-name="Image Converter">
+                    <h2>Image Converter</h2>
+                    <p>Convert images between different formats like JPG, PNG, WEBP, and more with high quality.</p>
+                    <button class="tool-btn">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-tool-name="Image Compressor">
+                    <h2>Image Compressor</h2>
+                    <p>Reduce image file size without noticeable quality loss. Perfect for web optimization.</p>
+                    <button class="tool-btn">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-tool-name="Image Crop">
+                    <h2>Image Crop</h2>
+                    <p>Crop your images to any size or aspect ratio with precision and ease.</p>
+                    <button class="tool-btn">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-tool-name="Video Converter">
+                    <h2>Video Converter</h2>
+                    <p>Convert videos between MP4, AVI, MOV, MKV and other popular formats.</p>
+                    <button class="tool-btn">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-tool-name="Age Calculator">
+                    <h2>Age Calculator</h2>
+                    <p>Calculate exact age in years, months, and days based on birth date.</p>
+                    <button class="tool-btn">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-tool-name="EMI Calculator">
+                    <h2>EMI Calculator</h2>
+                    <p>Calculate Equated Monthly Installments for loans with different interest rates.</p>
+                    <button class="tool-btn">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-tool-name="SIP Calculator">
+                    <h2>SIP Calculator</h2>
+                    <p>Calculate returns on your Systematic Investment Plan (SIP) investments.</p>
+                    <button class="tool-btn">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-tool-name="Audio Trim">
+                    <h2>Audio Trim</h2>
+                    <p>Cut and trim audio files to create perfect clips from your recordings.</p>
+                    <button class="tool-btn">Use Tool</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Content (hidden by default) -->
+        <div id="privacyContent" class="content-page" style="display: none;">
+            <h1>Privacy Policy</h1>
+            <p>Last updated: January 2023</p>
+            
+            <h2>1. Information We Collect</h2>
+            <p>We collect information you provide directly to us when you use our services, including:</p>
+            <ul>
+                <li>Personal information (name, email address) when you create an account</li>
+                <li>Files you upload for processing through our tools</li>
+                <li>Usage data and preferences</li>
+            </ul>
+            
+            <h2>2. How We Use Your Information</h2>
+            <p>We use the information we collect to:</p>
+            <ul>
+                <li>Provide, maintain, and improve our services</li>
+                <li>Develop new tools and features</li>
+                <li>Communicate with you about updates and offers</li>
+                <li>Monitor and analyze usage patterns</li>
+            </ul>
+            
+            <h2>3. Data Security</h2>
+            <p>We implement appropriate security measures to protect your information:</p>
+            <ul>
+                <li>Encryption of data in transit</li>
+                <li>Secure storage practices</li>
+                <li>Regular security audits</li>
+            </ul>
+            
+            <h2>4. Third-Party Services</h2>
+            <p>We may use third-party services that collect information used to identify you, such as:</p>
+            <ul>
+                <li>Analytics providers</li>
+                <li>Advertising networks</li>
+                <li>Cloud storage providers</li>
+            </ul>
+            
+            <a href="#" class="back-btn" id="privacyBackBtn">Back to Home</a>
+        </div>
+
+        <!-- Terms of Service Content (hidden by default) -->
+        <div id="termsContent" class="content-page" style="display: none;">
+            <h1>Terms of Service</h1>
+            <p>Last updated: January 2023</p>
+            
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing or using Multi Tool Hub, you agree to be bound by these Terms of Service.</p>
+            
+            <h2>2. Description of Service</h2>
+            <p>Multi Tool Hub provides various online tools for file conversion, editing, and calculations. We reserve the right to modify or discontinue services at any time.</p>
+            
+            <h2>3. User Responsibilities</h2>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Use the service for any illegal purpose</li>
+                <li>Upload harmful or malicious files</li>
+                <li>Attempt to gain unauthorized access to our systems</li>
+                <li>Violate any laws in your jurisdiction</li>
+            </ul>
+            
+            <h2>4. Limitation of Liability</h2>
+            <p>Multi Tool Hub shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of the service.</p>
+            
+            <h2>5. Changes to Terms</h2>
+            <p>We may modify these terms at any time. Your continued use of the service constitutes acceptance of the modified terms.</p>
+            
+            <a href="#" class="back-btn" id="termsBackBtn">Back to Home</a>
+        </div>
+
+        <!-- Contact Us Content (hidden by default) -->
+        <div id="contactContent" class="content-page" style="display: none;">
+            <h1>Contact Us</h1>
+            
+            <h2>Customer Support</h2>
+            <p>For any questions or support requests, please email us at:</p>
+            <p><strong>support@multitoolhub.com</strong></p>
+            <p>We typically respond within 24-48 hours.</p>
+            
+            <h2>Business Inquiries</h2>
+            <p>For partnership opportunities or business inquiries:</p>
+            <p><strong>business@multitoolhub.com</strong></p>
+            
+            <h2>Mailing Address</h2>
+            <p>Multi Tool Hub Inc.</p>
+            <p>123 Tech Street</p>
+            <p>San Francisco, CA 94107</p>
+            <p>United States</p>
+            
+            <h2>Follow Us</h2>
+            <div class="footer-social">
+                <a href="https://facebook.com" class="footer-social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" class="footer-social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" class="footer-social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com" class="footer-social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://youtube.com" class="footer-social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
             
-            <div class="tool-card" data-tool-name="Image Compressor">
-                <h2>Image Compressor</h2>
-                <p>Reduce image file size without noticeable quality loss. Perfect for web optimization.</p>
-                <button class="tool-btn">Use Tool</button>
-            </div>
-            
-            <div class="tool-card" data-tool-name="Image Crop">
-                <h2>Image Crop</h2>
-                <p>Crop your images to any size or aspect ratio with precision and ease.</p>
-                <button class="tool-btn">Use Tool</button>
-            </div>
-            
-            <div class="tool-card" data-tool-name="Video Converter">
-                <h2>Video Converter</h2>
-                <p>Convert videos between MP4, AVI, MOV, MKV and other popular formats.</p>
-                <button class="tool-btn">Use Tool</button>
-            </div>
-            
-            <div class="tool-card" data-tool-name="Age Calculator">
-                <h2>Age Calculator</h2>
-                <p>Calculate exact age in years, months, and days based on birth date.</p>
-                <button class="tool-btn">Use Tool</button>
-            </div>
-            
-            <div class="tool-card" data-tool-name="EMI Calculator">
-                <h2>EMI Calculator</h2>
-                <p>Calculate Equated Monthly Installments for loans with different interest rates.</p>
-                <button class="tool-btn">Use Tool</button>
-            </div>
-            
-            <div class="tool-card" data-tool-name="SIP Calculator">
-                <h2>SIP Calculator</h2>
-                <p>Calculate returns on your Systematic Investment Plan (SIP) investments.</p>
-                <button class="tool-btn">Use Tool</button>
-            </div>
-            
-            <div class="tool-card" data-tool-name="Audio Trim">
-                <h2>Audio Trim</h2>
-                <p>Cut and trim audio files to create perfect clips from your recordings.</p>
-                <button class="tool-btn">Use Tool</button>
-            </div>
+            <a href="#" class="back-btn" id="contactBackBtn">Back to Home</a>
         </div>
     </main>
 
     <footer>
-        <p class="footer-text">© 2023 Multi Tool Hub. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link" id="privacyLink">Privacy Policy</a>
+                <a href="#" class="footer-link" id="termsLink">Terms of Service</a>
+                <a href="#" class="footer-link" id="contactLink">Contact Us</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Blog</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://facebook.com" class="footer-social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" class="footer-social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" class="footer-social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com" class="footer-social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://youtube.com" class="footer-social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="footer-text">© 2023 Multi Tool Hub. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- Login Modal -->
@@ -416,6 +675,56 @@
     </div>
 
     <script>
+        // Navigation between pages
+        document.getElementById('privacyLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('homeContent').style.display = 'none';
+            document.getElementById('privacyContent').style.display = 'block';
+            document.getElementById('termsContent').style.display = 'none';
+            document.getElementById('contactContent').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+
+        document.getElementById('termsLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('homeContent').style.display = 'none';
+            document.getElementById('privacyContent').style.display = 'none';
+            document.getElementById('termsContent').style.display = 'block';
+            document.getElementById('contactContent').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+
+        document.getElementById('contactLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('homeContent').style.display = 'none';
+            document.getElementById('privacyContent').style.display = 'none';
+            document.getElementById('termsContent').style.display = 'none';
+            document.getElementById('contactContent').style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+
+        // Back buttons
+        document.getElementById('privacyBackBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('homeContent').style.display = 'block';
+            document.getElementById('privacyContent').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+
+        document.getElementById('termsBackBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('homeContent').style.display = 'block';
+            document.getElementById('termsContent').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+
+        document.getElementById('contactBackBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('homeContent').style.display = 'block';
+            document.getElementById('contactContent').style.display = 'none';
+            window.scrollTo(0, 0);
+        });
+
         // Tool buttons functionality
         document.querySelectorAll('.tool-btn').forEach(button => {
             button.addEventListener('click', function() {
