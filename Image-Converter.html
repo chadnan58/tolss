@@ -1,0 +1,55 @@
+<div style="background:#2e2e4e; color:white; padding:20px; border-radius:10px; max-width:500px; margin:auto;">
+  <h2 style="margin-bottom:10px;">Image Converter</h2>
+  <p>Convert images between different formats like JPG, PNG, WEBP, and more with high quality.</p>
+  
+  <input type="file" id="imageInput" accept="image/*" style="margin-top:10px;" />
+  
+  <select id="formatSelect" style="margin-top:10px; padding:5px;">
+    <option value="image/png">PNG</option>
+    <option value="image/jpeg">JPG</option>
+    <option value="image/webp">WEBP</option>
+  </select>
+
+  <button onclick="convertImage()" style="display:block; background:#ffd700; color:black; padding:10px 15px; border:none; border-radius:5px; margin-top:15px; font-weight:bold;">
+    Convert & Download
+  </button>
+
+  <canvas id="canvas" style="display:none;"></canvas>
+</div>
+
+<script>
+  function convertImage() {
+    const fileInput = document.getElementById('imageInput');
+    const format = document.getElementById('formatSelect').value;
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    if (!fileInput.files[0]) {
+      alert("Please select an image.");
+      return;
+    }
+
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const img = new Image();
+      img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+
+        canvas.toBlob(function (blob) {
+          const link = document.createElement('a');
+          link.download = 'converted-image.' + format.split('/')[1];
+          link.href = URL.createObjectURL(blob);
+          link.click();
+        }, format);
+      };
+      img.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  }
+</script>
