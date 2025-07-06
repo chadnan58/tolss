@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compress images online to reduce file size without losing quality. Optimize your images for faster website load times.">
+  <meta name="keywords" content="image compressor, reduce image size, compress jpg, compress png, web image optimization">
+  <meta name="author" content="YourName">
+  <title>Image Compressor - Reduce Image Size Online</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #2e2e4e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h1, p {
+      text-align: center;
+    }
+
+    input[type="file"],
+    input[type="range"],
+    button {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    .adsense-slot {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    canvas {
+      display: none;
+    }
+
+    .compression-level {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .compression-level {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Image Compressor</h1>
+    <p>Reduce image file size without noticeable quality loss. Perfect for web optimization.</p>
+
+    <!-- Google AdSense Slot (replace ca-pub-XXXX with your ID) -->
+    <div class="adsense-slot">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <input type="file" id="upload" accept="image/*" />
+    
+    <label for="quality">Compression Level: <span id="qualityValue">70%</span></label>
+    <div class="compression-level">
+      <span>Low</span>
+      <input type="range" id="quality" min="10" max="100" value="70" />
+      <span>High</span>
+    </div>
+
+    <button onclick="compressImage()">Compress & Download</button>
+
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <script>
+    const qualityInput = document.getElementById("quality");
+    const qualityValue = document.getElementById("qualityValue");
+
+    qualityInput.addEventListener("input", () => {
+      qualityValue.textContent = qualityInput.value + "%";
+    });
+
+    function compressImage() {
+      const fileInput = document.getElementById("upload");
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const quality = parseInt(qualityInput.value) / 100;
+
+      if (!fileInput.files[0]) {
+        alert("Please upload an image first.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = new Image();
+        img.onload = function () {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+
+          canvas.toBlob(function (blob) {
+            const link = document.createElement("a");
+            link.download = "compressed-image.jpg";
+            link.href = URL.createObjectURL(blob);
+            link.click();
+          }, "image/jpeg", quality);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+  </script>
+
+</body>
+</html>
